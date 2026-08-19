@@ -1,0 +1,165 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ */
+/* Design tokens — see DESIGN.md for source values                    */
+/* ------------------------------------------------------------------ */
+
+:root {
+  /* Primary */
+  --black: #000000;
+  --white: #ffffff;
+
+  /* Neutral */
+  --gray-50: #f5f5f7;
+  --gray-100: #e8e8ed;
+  --gray-200: #d2d2d7;
+  --gray-400: #86868b;
+  --gray-600: #6e6e73;
+  --gray-900: #1d1d1f;
+
+  /* Backgrounds */
+  --background: #ffffff;
+  --background-secondary: #f5f5f7;
+  --background-dark: #000000;
+
+  /* Text */
+  --text-primary: #1d1d1f;
+  --text-secondary: #6e6e73;
+
+  /* Accent — single subtle personal accent, used sparingly */
+  --accent: #3a5ce0;
+  --accent-strong: #2a45b3;
+
+  /* Border radius */
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 28px;
+  --radius-xl: 32px;
+
+  /* Section rhythm */
+  --section-spacing: clamp(80px, 6vw + 40px, 200px);
+
+  /* Typeface — DESIGN.md #5. System font stack first, Inter as the   */
+  /* loaded web-font fallback for platforms without SF Pro.           */
+  --font-family-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+    "SF Pro Text", var(--font-inter), system-ui, sans-serif;
+}
+
+@theme inline {
+  --font-sans: var(--font-family-sans);
+
+  /* Colors */
+  --color-black: var(--black);
+  --color-white: var(--white);
+
+  --color-gray-50: var(--gray-50);
+  --color-gray-100: var(--gray-100);
+  --color-gray-200: var(--gray-200);
+  --color-gray-400: var(--gray-400);
+  --color-gray-600: var(--gray-600);
+  --color-gray-900: var(--gray-900);
+
+  --color-background: var(--background);
+  --color-background-secondary: var(--background-secondary);
+  --color-background-dark: var(--background-dark);
+
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+
+  /* Radius */
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+
+  /* Extra spacing step used for large section rhythm (DESIGN.md #9) */
+  --spacing-section: var(--section-spacing);
+
+  /* ---------------------------------------------------------------- */
+  /* Typography scale — fluid between the mobile and desktop values   */
+  /* defined in DESIGN.md #6. clamp() keeps a single utility class    */
+  /* correct across every breakpoint instead of stacking responsive   */
+  /* variants everywhere it's used.                                   */
+  /* ---------------------------------------------------------------- */
+
+  /* Display: 48px – 128px, line-height 0.95–1.05 */
+  --text-display: clamp(3rem, 1.35rem + 7vw, 8rem);
+  --text-display--line-height: 1;
+  --text-display--letter-spacing: -0.02em;
+  --text-display--font-weight: 600;
+
+  /* Section Heading: 40px – 80px */
+  --text-heading: clamp(2.5rem, 1.6rem + 4vw, 5rem);
+  --text-heading--line-height: 1.05;
+  --text-heading--letter-spacing: -0.01em;
+  --text-heading--font-weight: 600;
+
+  /* Large Statement: 32px – 64px */
+  --text-statement: clamp(2rem, 1.3rem + 3vw, 4rem);
+  --text-statement--line-height: 1.1;
+  --text-statement--letter-spacing: -0.01em;
+  --text-statement--font-weight: 600;
+
+  /* Body large: 18px – 21px */
+  --text-body-lg: clamp(1.125rem, 1.05rem + 0.3vw, 1.3125rem);
+  --text-body-lg--line-height: 1.6;
+
+  /* Body: 16px – 18px */
+  --text-body: clamp(1rem, 0.95rem + 0.2vw, 1.125rem);
+  --text-body--line-height: 1.6;
+
+  /* Small / nav / meta text */
+  --text-small: 0.9375rem;
+  --text-small--line-height: 1.4;
+}
+
+/* ------------------------------------------------------------------ */
+/* Base styles                                                        */
+/* ------------------------------------------------------------------ */
+
+* {
+  border-color: var(--gray-200);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-white);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* ------------------------------------------------------------------ */
+/* Reduced motion — DESIGN.md #28. Global safety net; components that */
+/* use Framer Motion also respect this via <MotionProvider>.          */
+/* ------------------------------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
